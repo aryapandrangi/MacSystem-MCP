@@ -15,6 +15,13 @@ dependencies = [
     "pyobjc-framework-Quartz>=10.0; sys_platform == 'darwin'"
 ]
 
+[project.scripts]
+macsystem-mcp = "mac_server:main"
+
+[tool.setuptools]
+py-modules = ["mac_server"]
+packages = ["tools"]
+
 [tool.windsurf.mcp]
 name = "mac"
 description = "macOS Workstation Control & Automation MCP Server"

@@ -576,5 +576,8 @@ def update_knowledge_document(id: str, content: str) -> str:
     return update_knowledge_document_impl(id, content)
 
 
-if __name__ == "__main__":
+def main():
     mcp.run()
+
+if __name__ == "__main__":
+    main()

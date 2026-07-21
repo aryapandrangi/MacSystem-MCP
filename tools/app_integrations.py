@@ -55,9 +55,11 @@ def mail_tool(
         elif act == "send_draft":
             if not to or not subject or not body:
                 raise ValueError("to, subject, and body are required for send_draft")
+            subject_esc = subject.replace('"', '\\"')
+            body_esc = body.replace('"', '\\"')
             script = f'''
             tell application "Mail"
-                set msg to make new outgoing message with properties {{subject:"{subject.replace('"', '\\"')}", content:"{body.replace('"', '\\"')}", visible:true}}
+                set msg to make new outgoing message with properties {{subject:"{subject_esc}", content:"{body_esc}", visible:true}}
                 tell msg
                     make new to recipient at end of to recipients with properties {{address:"{to}"}}
                 end tell
@@ -69,9 +71,10 @@ def mail_tool(
         elif act == "search":
             if not query:
                 raise ValueError("query is required for search action")
+            query_esc = query.replace('"', '\\"')
             script = f'''
             tell application "Mail"
-                set foundMsgs to messages of inbox whose subject contains "{query.replace('"', '\\"')}" or content contains "{query.replace('"', '\\"')}"
+                set foundMsgs to messages of inbox whose subject contains "{query_esc}" or content contains "{query_esc}"
                 set outputText to ""
                 repeat with m in foundMsgs
                     set outputText to outputText & (id of m as string) & ";" & (sender of m) & ";" & (subject of m) & "\\n"
@@ -116,10 +119,11 @@ def calendar_tool(
         elif act == "create_event":
             if not title:
                 raise ValueError("title is required for create_event")
+            title_esc = title.replace('"', '\\"')
             script = f'''
             tell application "Calendar"
                 tell calendar 1
-                    make new event with properties {{summary:"{title.replace('"', '\\"')}"}}
+                    make new event with properties {{summary:"{title_esc}"}}
                 end tell
             end tell
             '''
@@ -130,10 +134,11 @@ def calendar_tool(
             if not event_id and not title:
                 raise ValueError("event_id or title is required for delete_event")
             search_str = title or event_id
+            search_esc = search_str.replace('"', '\\"')
             script = f'''
             tell application "Calendar"
                 tell calendar 1
-                    delete (first event whose summary contains "{search_str.replace('"', '\\"')}")
+                    delete (first event whose summary contains "{search_esc}")
                 end tell
             end tell
             '''
@@ -156,11 +161,12 @@ def messages_tool(
         if act == "send":
             if not recipient or not text:
                 raise ValueError("recipient and text are required for send action")
+            text_esc = text.replace('"', '\\"')
             script = f'''
             tell application "Messages"
                 set targetService to 1st service whose service type is iMessage
                 set targetBuddy to buddy "{recipient}" of targetService
-                send "{text.replace('"', '\\"')}" to targetBuddy
+                send "{text_esc}" to targetBuddy
             end tell
             '''
             run_applescript(script)
@@ -229,9 +235,10 @@ def safari_tool(
         elif act in ("run_js_on_active_tab", "run_js"):
             if not js_script:
                 raise ValueError("js_script is required for run_js_on_active_tab")
+            js_esc = js_script.replace('"', '\\"')
             script = f'''
             tell application "Safari"
-                do JavaScript "{js_script.replace('"', '\\"')}" in document 1
+                do JavaScript "{js_esc}" in document 1
             end tell
             '''
             res = run_applescript(script)
@@ -254,10 +261,12 @@ def notes_tool(
         if act == "create":
             if not title or not body:
                 raise ValueError("title and body are required for create action")
+            title_esc = title.replace('"', '\\"')
+            body_esc = body.replace('"', '\\"')
             script = f'''
             tell application "Notes"
                 tell folder "Notes"
-                    make new note with properties {{name:"{title.replace('"', '\\"')}", body:"{body.replace('"', '\\"')}"}}
+                    make new note with properties {{name:"{title_esc}", body:"{body_esc}"}}
                 end tell
             end tell
             '''
@@ -267,9 +276,10 @@ def notes_tool(
         elif act == "search":
             if not query:
                 raise ValueError("query is required for search action")
+            query_esc = query.replace('"', '\\"')
             script = f'''
             tell application "Notes"
-                set noteList to name of every note whose name contains "{query.replace('"', '\\"')}" or body contains "{query.replace('"', '\\"')}"
+                set noteList to name of every note whose name contains "{query_esc}" or body contains "{query_esc}"
                 return noteList
             end tell
             '''
@@ -279,10 +289,12 @@ def notes_tool(
         elif act == "append":
             if not note_id or not body:
                 raise ValueError("note_id and body are required for append action")
+            note_id_esc = note_id.replace('"', '\\"')
+            body_esc = body.replace('"', '\\"')
             script = f'''
             tell application "Notes"
-                set myNote to first note whose name is "{note_id.replace('"', '\\"')}"
-                set body of myNote to (body of myNote) & "<br>" & "{body.replace('"', '\\"')}"
+                set myNote to first note whose name is "{note_id_esc}"
+                set body of myNote to (body of myNote) & "<br>" & "{body_esc}"
             end tell
             '''
             run_applescript(script)
@@ -310,9 +322,10 @@ def terminal_tool(
             cmd = command or text
             if not cmd:
                 raise ValueError("command is required for run_command")
+            cmd_esc = cmd.replace('"', '\\"')
             script = f'''
             tell application "{app_name}"
-                do script "{cmd.replace('"', '\\"')}"
+                do script "{cmd_esc}"
                 activate
             end tell
             '''
@@ -321,9 +334,10 @@ def terminal_tool(
         elif act == "send_text":
             if not text:
                 raise ValueError("text is required for send_text")
+            text_esc = text.replace('"', '\\"')
             script = f'''
             tell application "{app_name}"
-                do script "{text.replace('"', '\\"')}"
+                do script "{text_esc}"
                 activate
             end tell
             '''
@@ -355,9 +369,10 @@ def calendar_create(title: str, start_time: str, end_time: Optional[str] = None)
 def contacts_search(query: str) -> str:
     """Searches macOS Contacts app for person matching query."""
     try:
+        query_esc = query.replace('"', '\\"')
         script = f'''
         tell application "Contacts"
-            set matches to name of every person whose name contains "{query.replace('"', '\\"')}"
+            set matches to name of every person whose name contains "{query_esc}"
             return matches
         end tell
         '''
@@ -405,7 +420,8 @@ def analyze_image(path: str) -> str:
 
 def get_knowledge_document(id: str) -> str:
     """Retrieves document from local knowledge catalog by ID."""
-    catalog_path = os.path.expanduser(f"~/Desktop/Jarvis/PersonalAssistant/backend/data/knowledge_catalog/{id}.json")
+    catalog_dir = os.environ.get("KNOWLEDGE_CATALOG_DIR", os.path.expanduser("~/.macsystem/knowledge_catalog"))
+    catalog_path = os.path.join(catalog_dir, f"{id}.json")
     if os.path.exists(catalog_path):
         with open(catalog_path, 'r', encoding='utf-8') as f:
             return f.read()
@@ -413,7 +429,7 @@ def get_knowledge_document(id: str) -> str:
 
 def update_knowledge_document(id: str, content: str) -> str:
     """Updates or creates document in local knowledge catalog by ID."""
-    catalog_dir = os.path.expanduser("~/Desktop/Jarvis/PersonalAssistant/backend/data/knowledge_catalog")
+    catalog_dir = os.environ.get("KNOWLEDGE_CATALOG_DIR", os.path.expanduser("~/.macsystem/knowledge_catalog"))
     os.makedirs(catalog_dir, exist_ok=True)
     catalog_path = os.path.join(catalog_dir, f"{id}.json")
     with open(catalog_path, 'w', encoding='utf-8') as f:

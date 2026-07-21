@@ -1,6 +1,5 @@
 # MacSystem-Mcp: macOS FastMCP Workstation Control & Automation Server
 
-[![Docker Image](https://img.shields.io/badge/Docker%20Hub-aryapandrangi%2Fmacsystem--mcp-blue?logo=docker)](https://hub.docker.com/r/aryapandrangi/macsystem-mcp)
 [![Python Version](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue)](https://www.python.org/)
 [![FastMCP](https://img.shields.io/badge/FastMCP-Server-green)](https://github.com/jlowin/fastmcp)
 [![Tools Count](https://img.shields.io/badge/Tools-87%20Registered-orange)](#features--tool-categories-87-tools)
@@ -9,34 +8,29 @@
 
 ---
 
-## Docker Hub Quick Start (Recommended)
+## Quick Start Configuration
 
-Docker image is publicly hosted on Docker Hub at **[aryapandrangi/macsystem-mcp](https://hub.docker.com/r/aryapandrangi/macsystem-mcp)**.
-
-### 1. Pull Image from Docker Hub
-```bash
-docker pull aryapandrangi/macsystem-mcp:latest
-```
-
-### 2. Run Container via Docker
-```bash
-docker run -d --name macsystem-mcp aryapandrangi/macsystem-mcp:latest
-```
-
-### 3. Connect to Claude Desktop / Personal Assistant / Cursor
-Add this configuration snippet to your `claude_desktop_config.json` or your Personal Assistant `mcp-config.json`:
+Add `macsystem-mcp` to your `claude_desktop_config.json` (or Cursor / Windsurf MCP configuration):
 
 ```json
 {
   "mcpServers": {
     "macsystem-mcp": {
-      "command": "docker",
-      "args": [
-        "run",
-        "-i",
-        "--rm",
-        "aryapandrangi/macsystem-mcp:latest"
-      ]
+      "command": "uvx",
+      "args": ["macsystem-mcp"]
+    }
+  }
+}
+```
+
+Or for local development:
+
+```json
+{
+  "mcpServers": {
+    "macsystem-mcp": {
+      "command": "/path/to/MacSystem-Mcp/.venv/bin/macsystem-mcp",
+      "args": []
     }
   }
 }

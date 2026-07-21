@@ -1,9 +1,39 @@
+# Python & Virtual Environments
 .venv/
+venv/
+env/
+ENV/
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 .pytest_cache/
+.coverage
+htmlcov/
+
+# Build & Package artifacts
+*.egg-info/
+.eggs/
+dist/
+build/
+*.spec
+
+# OS Generated Files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs & Temporary Files
+*.log
+tmp/
 tests/reports/
 /tmp/test_*
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.*.local
