@@ -1,0 +1,111 @@
+{
+  "system_controls": [
+    { "tool": "set_volume", "prompt": "Set system volume to 60%" },
+    { "tool": "get_volume", "prompt": "What is the current system volume?" },
+    { "tool": "toggle_dark_mode", "prompt": "Turn on dark mode on my Mac" },
+    { "tool": "system_power", "prompt": "Put my Mac to sleep" },
+    { "tool": "lock_screen", "prompt": "Lock my Mac screen" },
+    { "tool": "say_speech", "prompt": "Say out loud 'Hello, welcome to Jarvis Personal Assistant'" },
+    { "tool": "get_system_stats", "prompt": "Show me CPU usage, RAM, disk space, and battery stats" },
+    { "tool": "wifi_control", "prompt": "Check the current Wi-Fi status on my Mac" },
+    { "tool": "get_date_time", "prompt": "What is the current local date, time, and timezone?" }
+  ],
+  "app_and_window_management": [
+    { "tool": "get_active_window", "prompt": "Which application window is currently active?" },
+    { "tool": "list_applications", "prompt": "List all running applications on my Mac" },
+    { "tool": "open_application", "prompt": "Open Finder on my Mac" },
+    { "tool": "close_application", "prompt": "Quit Calculator application" },
+    { "tool": "open_url", "prompt": "Open https://github.com in my default web browser" },
+    { "tool": "list_apps", "prompt": "Show all active GUI applications" },
+    { "tool": "list_windows", "prompt": "List all visible window titles" },
+    { "tool": "focus_app", "prompt": "Focus on Finder" },
+    { "tool": "focus_window", "prompt": "Focus on the window named Finder" },
+    { "tool": "move_window", "prompt": "Move the front window to coordinates (100, 100)" },
+    { "tool": "resize_window", "prompt": "Resize the active window to 800 width and 600 height" },
+    { "tool": "set_space", "prompt": "Switch to Mission Control Desktop space 1" }
+  ],
+  "input_and_automation": [
+    { "tool": "keystroke_action", "prompt": "Press Command+Space shortcut to open Spotlight" },
+    { "tool": "mouse_move", "prompt": "Move mouse cursor to coordinates (500, 400)" },
+    { "tool": "mouse_click", "prompt": "Click mouse button at coordinates (500, 400)" },
+    { "tool": "mouse_drag", "prompt": "Drag mouse from (100, 100) to (300, 300)" },
+    { "tool": "mouse_scroll", "prompt": "Scroll down 5 units" },
+    { "tool": "key_press", "prompt": "Press the Return key" },
+    { "tool": "type_text", "prompt": "Type 'Hello world' on keyboard" },
+    { "tool": "shortcut_list", "prompt": "List all configured macOS Shortcuts" },
+    { "tool": "shortcut_run", "prompt": "Run macOS Shortcut named 'Daily Briefing'" },
+    { "tool": "wait_ms", "prompt": "Wait for 500 milliseconds" }
+  ],
+  "filesystem_operations": [
+    { "tool": "fs_read", "prompt": "Read content of file ~/Desktop/sample.txt" },
+    { "tool": "fs_read_many", "prompt": "Read contents of ~/Desktop/file1.txt and ~/Desktop/file2.txt" },
+    { "tool": "fs_write", "prompt": "Create a file at ~/Desktop/notes.txt with content 'Meeting Notes'" },
+    { "tool": "fs_edit", "prompt": "In file ~/Desktop/notes.txt replace 'Meeting' with 'Project'" },
+    { "tool": "fs_write_pdf", "prompt": "Create a PDF file at ~/Desktop/doc.pdf with text 'Quarterly Report'" },
+    { "tool": "fs_list", "prompt": "List all files in directory ~/Desktop" },
+    { "tool": "fs_stat", "prompt": "Show file statistics for ~/Desktop/notes.txt" },
+    { "tool": "fs_copy", "prompt": "Copy ~/Desktop/notes.txt to ~/Desktop/notes_backup.txt" },
+    { "tool": "fs_move", "prompt": "Rename ~/Desktop/notes_backup.txt to ~/Desktop/notes_v2.txt" },
+    { "tool": "fs_mkdir", "prompt": "Create a directory ~/Desktop/NewFolder" },
+    { "tool": "fs_delete", "prompt": "Delete file ~/Desktop/notes_v2.txt" },
+    { "tool": "fs_watch_once", "prompt": "Watch directory ~/Desktop for modifications for 3 seconds" },
+    { "tool": "fs_xattr_get", "prompt": "Get extended attribute com.apple.metadata on ~/Desktop/doc.pdf" },
+    { "tool": "fs_xattr_set", "prompt": "Set extended attribute com.test.tag to 'custom' on ~/Desktop/doc.pdf" }
+  ],
+  "finder_and_workspace": [
+    { "tool": "reveal_in_finder", "prompt": "Reveal file ~/Desktop/doc.pdf in Finder" },
+    { "tool": "get_finder_selection", "prompt": "Get selected items in Finder" },
+    { "tool": "set_finder_tags", "prompt": "Set Blue color tag on file ~/Desktop/doc.pdf" },
+    { "tool": "quick_look", "prompt": "Open QuickLook preview for ~/Desktop/doc.pdf" },
+    { "tool": "move_to_trash", "prompt": "Move ~/Desktop/doc.pdf to Trash" },
+    { "tool": "spotlight_search", "prompt": "Search Spotlight for files matching 'PersonalAssistant'" },
+    { "tool": "empty_trash", "prompt": "Empty the macOS Trash" }
+  ],
+  "process_management": [
+    { "tool": "process_run", "prompt": "Run shell command 'uptime'" },
+    { "tool": "process_start", "prompt": "Start background command 'ping google.com'" },
+    { "tool": "process_read_output", "prompt": "Read output of background process PID 1234" },
+    { "tool": "process_write_input", "prompt": "Send input 'y' to background process PID 1234" },
+    { "tool": "process_terminate", "prompt": "Gracefully terminate process PID 1234" },
+    { "tool": "process_list", "prompt": "List all running processes" },
+    { "tool": "process_kill", "prompt": "Force kill process PID 1234" }
+  ],
+  "media_control": [
+    { "tool": "media_control", "prompt": "Toggle media play/pause" }
+  ],
+  "timers_and_reminders": [
+    { "tool": "reminders_action", "prompt": "List all my macOS Reminders" },
+    { "tool": "timer_action", "prompt": "Set a timer for 5 minutes labeled 'Pizza'" }
+  ],
+  "applescript": [
+    { "tool": "run_applescript", "prompt": "Run AppleScript 'return (system info)'" }
+  ],
+  "screenshot_and_ui": [
+    { "tool": "take_screenshot", "prompt": "Take a screenshot and save it to ~/Desktop/screen.png" },
+    { "tool": "capture_screen", "prompt": "Capture screen to ~/Desktop/capture.png" },
+    { "tool": "get_accessibility_tree", "prompt": "Get accessibility tree for active window" },
+    { "tool": "get_system_info", "prompt": "Get macOS hardware and OS build info" },
+    { "tool": "get_screen_info", "prompt": "Get display resolution and screen dimensions" },
+    { "tool": "clipboard_action", "prompt": "Read text from clipboard" },
+    { "tool": "clipboard_read", "prompt": "Read clipboard contents" },
+    { "tool": "clipboard_write", "prompt": "Copy text 'Personal Assistant Code' to clipboard" },
+    { "tool": "notify", "prompt": "Display a notification titled 'Task Done' with message 'Build completed successfully'" },
+    { "tool": "prompt_user", "prompt": "Display an interactive dialog prompt asking 'Do you want to proceed?'" }
+  ],
+  "app_integrations": [
+    { "tool": "mail", "prompt": "Read recent emails in my Mail inbox" },
+    { "tool": "calendar", "prompt": "List upcoming events in my Calendar" },
+    { "tool": "messages", "prompt": "Show recent iMessage chat conversations" },
+    { "tool": "safari", "prompt": "List all open tabs in Safari" },
+    { "tool": "notes", "prompt": "Search Apple Notes for 'ideas'" },
+    { "tool": "terminal", "prompt": "List open sessions in Terminal" },
+    { "tool": "calendar_create", "prompt": "Create a calendar event titled 'Team Sync' tomorrow at 2 PM" },
+    { "tool": "contacts_search", "prompt": "Search contacts for 'John'" },
+    { "tool": "notes_create", "prompt": "Create a note in Apple Notes titled 'Shopping List' with content 'Milk, Eggs, Coffee'" },
+    { "tool": "mail_send_draft", "prompt": "Compose a draft email to 'alex@example.com' with subject 'Project Update'" },
+    { "tool": "iphone_mirror_info", "prompt": "Check if iPhone Mirroring is running" },
+    { "tool": "analyze_image", "prompt": "Analyze image file ~/Desktop/screen.png" },
+    { "tool": "get_knowledge_document", "prompt": "Get knowledge document 'architecture'" },
+    { "tool": "update_knowledge_document", "prompt": "Update knowledge document 'architecture' with content 'System Overview'" }
+  ]
+}
